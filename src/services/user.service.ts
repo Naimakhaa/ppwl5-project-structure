@@ -1,7 +1,3 @@
-import { userRepository } from "../repositories/user.repository";
-import { UserModel } from "../models/user.model";
-import type { User } from "../types/user.type";
-
 /* =========================
    SERVICE
    Tugas:
@@ -9,7 +5,11 @@ import type { User } from "../types/user.type";
    2. import user.repository, user.model, & user.type
    3. tambahkan delete(id: number) yang memanggil delete() dari userRepository
 ========================= */
-const userService = {
+import { userRepository } from "../repositories/user.repository";
+import { UserModel } from "../models/user.model";
+import type { User } from "../types/user.type";
+
+export const userService = {
   getAllUsers(): UserModel[] {
     return userRepository.findAll();
   },
@@ -23,5 +23,8 @@ const userService = {
 
   update(id: number, user: User) {
     userRepository.update(id, user);
+  },
+  delete(id: number) {
+    return userRepository.delete(id);
   }
 };

@@ -5,8 +5,9 @@
     2. gunakan export class ...
     3. Property id jadikan opsional
 ========================= */
-class UserModel implements User {
-  id: number;
+import type { User } from "../types/user.type";
+export class UserModel implements User {
+  id?: number;
   name: string;
   role: string;
 
@@ -16,7 +17,7 @@ class UserModel implements User {
     this.role = data.role;
   }
 
-  get displayName() {
+  get displayName(): string {
     return `${this.name} (${this.role})`;
   }
 }

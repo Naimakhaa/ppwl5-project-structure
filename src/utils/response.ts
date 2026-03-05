@@ -4,7 +4,7 @@
     1. Letakkan di file khusus (response.ts), dalam folder yang sesuai
     2. Gunakan export const ...
 ========================= */
-const htmlResponse = (html: string, status = 200) => {
+export const htmlResponse = (html: string, status = 200) => {
   return new Response(html, {
     status,
     headers: {
@@ -13,7 +13,7 @@ const htmlResponse = (html: string, status = 200) => {
   });
 };
 
-const redirect = (url: string) => 
+export const redirect = (url: string) => 
   new Response(null, {
     status: 302,
     headers: { Location: url }

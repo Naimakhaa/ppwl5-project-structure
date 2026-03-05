@@ -5,10 +5,14 @@
     2. gunakan export const ...
     3. tambahkan delete(id: number) dengan query "DELETE FROM users WHERE id = ?"
 ========================= */
-const userRepository = {
+import { db } from "../config/db";
+import type { User } from "../types/user.type";
+import { UserModel } from "../models/user.model";
+
+export const userRepository = {
+  //Mengambil semua data dan mengubah menjadi instance UserModel
   findAll(): UserModel[] {
     const rows = db.query("SELECT id, name, role FROM users").all() as User[];
-
     return rows.map(user => new UserModel(user));
   },
   create(user: User) {
@@ -19,6 +23,10 @@ const userRepository = {
   update(id: number, user: User) {
     db.query("UPDATE users SET name = ?, role = ? WHERE id = ?")
       .run(user.name, user.role, id);
+  },
+  //Menghapus user berdasarkan ID 
+  delete(id: number) {
+    db.query("DELETE FROM users WHERE id = ?").run(id);
   }
 };
 

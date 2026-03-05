@@ -7,8 +7,8 @@ export const initDB = () => {
     db.run(`
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT,
-            role TEXT
+            name TEXT NOT NULL,
+            role TEXT NOT NULL
         )
     `);
     console.log("📁 Database initialized");
