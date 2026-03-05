@@ -21,29 +21,28 @@ export const userView = (users: UserModel[]) => `
     <div class="max-w-3xl mx-auto">
         <h1 class="text-3xl font-bold text-blue-600 mb-6">User Management (Clean Structure)</h1>
 
-        <form method="POST" action="/create" class="mb-8 flex gap-2">
-            <input name="name" placeholder="Name" class="border p-2 rounded w-full" required/>
-            <input name="role" placeholder="Role" class="border p-2 rounded w-full" required/>
-            <button type="submit" class="bg-blue-600 text-white rounded font-semibold hover:bg-blue-600 transition">
+        <form method="POST" action="/create" class="mb-6 flex gap-2">
+            <input name="name" placeholder="Name" class="border p-2 rounded w-full focus:outline-blue-500" required/>
+            <input name="role" placeholder="role" class="border p-2 rounded w-full focus:outline-blue-500" required/>
+            <button type="submit" class="bg-blue-500 text-white px-4 rounded font-semibold hover:bg-blue-600 transition">
                 Add
             </button>
         </form>
 
         <div class="grid gap-4">
-    ${users.map(user => `
-        <div class="bg-white shadow-md rounded-lg p-5 flex justify-between items-center">
+        ${users.map(user => `
+          <div class="bg-white shadow rounded p-4 flex justify-between items-center">
             <div>
-                <p class="font-bold text-lg">${user.displayName}</p>
-                <p class="text-xs text-gray-400">ID: ${user.id}</p>
+              <p class="font-semibold">${user.displayName}</p>
             </div>
-            <form method="POST" action="/delete/${user.id}">
-                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded ">
-                    Delete
-                </button>
-            </form>
-        </div>
-    `).join("")}
-</div>
+            <div class="flex gap-2">
+              <form method="POST" action="/delete/${user.id}">
+                <button class="bg-red-500 text-white px-3 rounded">Delete</button>
+              </form>
+            </div>
+          </div>
+        `).join("")}
+      </div>
     </div>
 </body>
 </html>
